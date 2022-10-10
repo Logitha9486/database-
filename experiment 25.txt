@@ -1,0 +1,84 @@
+ \c
+mysql> create database std_progress
+    -> create database std_progress;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create database std_progress' at line 2
+mysql> create database std_progress;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| book               |
+| car                |
+| dbtest2            |
+| employee           |
+| faculty            |
+| hospital           |
+| mysql              |
+| performance_schema |
+| product            |
+| sse                |
+| std_progress       |
+| test               |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> use std_progress;
+Database changed
+mysql> create table std_progress(std_no int,std_name varchar(15),subject varchar(15),marks int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc std_progress;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| std_no   | int(11)     | YES  |     | NULL    |       |
+| std_name | varchar(15) | YES  |     | NULL    |       |
+| subject  | varchar(15) | YES  |     | NULL    |       |
+| marks    | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into std_progress values(1,'earnest','physics',67),(2,'kishore','chemistry',84),(3,'santhosh','maths',90);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from std_progress;
++--------+----------+-----------+-------+
+| std_no | std_name | subject   | marks |
++--------+----------+-----------+-------+
+|      1 | earnest  | physics   |    67 |
+|      2 | kishore  | chemistry |    84 |
+|      3 | santhosh | maths     |    90 |
++--------+----------+-----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table std_progress add std_dept varchar(15);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from std_progress;
++--------+----------+-----------+-------+----------+
+| std_no | std_name | subject   | marks | std_dept |
++--------+----------+-----------+-------+----------+
+|      1 | earnest  | physics   |    67 | NULL     |
+|      2 | kishore  | chemistry |    84 | NULL     |
+|      3 | santhosh | maths     |    90 | NULL     |
++--------+----------+-----------+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql>  update std_progress set std_dept='CSE' where std_name='earnest';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from std_progress;
++--------+----------+-----------+-------+----------+
+| std_no | std_name | subject   | marks | std_dept |
++--------+----------+-----------+-------+----------+
+|      1 | earnest  | physics   |    67 | CSE      |
+|      2 | kishore  | chemistry |    84 | NULL     |
+|      3 | santhosh | maths     |    90 | NULL     |
++--------+----------+-----------+-------+----------+
+3 rows in set (0.00 sec)
